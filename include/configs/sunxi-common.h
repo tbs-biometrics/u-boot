@@ -321,6 +321,7 @@ extern int soft_i2c_gpio_scl;
 #ifdef CONFIG_USB_MUSB_GADGET
 #define CONFIG_USB_FUNCTION_FASTBOOT
 #define CONFIG_USB_FUNCTION_MASS_STORAGE
+#define CONFIG_USB_ETHER
 #endif
 
 #ifdef CONFIG_USB_FUNCTION_FASTBOOT
@@ -337,6 +338,11 @@ extern int soft_i2c_gpio_scl;
 #endif
 
 #ifdef CONFIG_USB_FUNCTION_MASS_STORAGE
+#endif
+
+#ifdef CONFIG_USB_ETHER
+#define CONFIG_USB_ETH_RNDIS
+#define CONFIG_USBNET_HOST_ADDR		"de:ad:be:af:00:00"
 #endif
 
 #ifdef CONFIG_USB_KEYBOARD
