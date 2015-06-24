@@ -307,3 +307,20 @@ void enable_caches(void)
 	dcache_enable();
 }
 #endif
+
+#ifdef CONFIG_USB_ETHER
+/*
+ * Initializes on-chip ethernet controllers.
+ * to override, implement board_eth_init()
+ */
+int cpu_eth_init(bd_t *bis)
+{
+	int rc;
+
+	rc = usb_eth_initialize(bis);
+	if (rc)
+		printf("Error %d registering USB_ETHER\n", rc);
+
+	return 0;
+}
+#endif
