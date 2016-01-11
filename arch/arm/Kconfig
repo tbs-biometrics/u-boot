@@ -658,7 +658,6 @@ config ARCH_SUNXI
 	select CMD_MMC if MMC
 	select CMD_USB if DISTRO_DEFAULTS
 	select DM
-	select DM_ETH
 	select DM_GPIO
 	select DM_KEYBOARD
 	select DM_SERIAL
@@ -671,8 +670,6 @@ config ARCH_SUNXI
 	select SYS_NS16550
 	select SPL_SYS_THUMB_BUILD if !ARM64
 	select USB if DISTRO_DEFAULTS
-	select USB_STORAGE if DISTRO_DEFAULTS
-	select USB_KEYBOARD if DISTRO_DEFAULTS
 	select USE_TINY_PRINTF
 	imply FAT_WRITE
 	imply PRE_CONSOLE_BUFFER
