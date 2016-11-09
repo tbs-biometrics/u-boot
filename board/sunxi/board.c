@@ -491,20 +491,6 @@ int board_mmc_init(bd_t *bis)
 		return -1;
 #endif
 
-#if !defined(CONFIG_SPL_BUILD) && CONFIG_MMC_SUNXI_SLOT_EXTRA == 2
-	/*
-	 * On systems with an emmc (mmc2), figure out if we are booting from
-	 * the emmc and if we are make it "mmc dev 0" so that boot.scr, etc.
-	 * are searched there first. Note we only do this for u-boot proper,
-	 * not for the SPL, see spl_boot_device().
-	 */
-	if (readb(SPL_ADDR + 0x28) == SUNXI_BOOTED_FROM_MMC2) {
-		/* Booting from emmc / mmc2, swap */
-		mmc0->block_dev.devnum = 1;
-		mmc1->block_dev.devnum = 0;
-	}
-#endif
-
 	return 0;
 }
 #endif
