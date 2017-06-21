@@ -46,7 +46,7 @@
 
 / {
 	model = "TBS A711 A83T Tablet";
-	compatible = "allwinner,tbs-a711", "allwinner,sun8i-a83t";
+	compatible = "tbs-biometrics,tbs-a711", "allwinner,sun8i-a83t";
 
 	aliases {
 		serial0 = &uart0;
