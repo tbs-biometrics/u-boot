@@ -312,7 +312,15 @@
 
 #define BOOTENV_DEV(devtypeu, devtypel, instance) \
 	BOOTENV_DEV_##devtypeu(devtypeu, devtypel, instance)
+
+#define BOOTENV_MMC_TBS \
+	"bootcmd_mmc_tbs=" \
+	"ext4load mmc 0:1 ${kernel_addr_r} /boot/zImage; " \
+	"ext4load mmc 0:1 ${fdt_addr_r} /boot/$fdtfile; " \
+	"bootz ${kernel_addr_r} - ${fdt_addr_r}\0" \
+
 #define BOOTENV \
+	BOOTENV_MMC_TBS \
 	BOOTENV_SHARED_HOST \
 	BOOTENV_SHARED_MMC \
 	BOOTENV_SHARED_PCI \
@@ -386,7 +394,7 @@
 		"done\0"
 
 #ifndef CONFIG_BOOTCOMMAND
-#define CONFIG_BOOTCOMMAND "run distro_bootcmd"
+#define CONFIG_BOOTCOMMAND "run bootcmd_mmc_tbs"
 #endif
 
 #endif  /* _CONFIG_CMD_DISTRO_BOOTCMD_H */
