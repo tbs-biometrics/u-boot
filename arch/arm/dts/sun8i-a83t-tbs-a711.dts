@@ -55,6 +55,10 @@
 	chosen {
 		stdout-path = "serial0:115200n8";
 	};
+
+	config {
+		u-boot,efi-partition-entries-offset = <1048576>;
+	};
 };
 
 &ehci0 {
