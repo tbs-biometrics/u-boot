@@ -271,6 +271,10 @@ extern int soft_i2c_gpio_scl;
 /* GPIO */
 #define CONFIG_SUNXI_GPIO
 
+#ifdef CONFIG_EFI_PARTITION
+#define CONFIG_RANDOM_UUID	1
+#endif
+
 #ifdef CONFIG_VIDEO
 /*
  * The amount of RAM to keep free at the top of RAM when relocating u-boot,
