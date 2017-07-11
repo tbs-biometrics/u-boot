@@ -19,7 +19,7 @@
 #include <errno.h>
 
 #define SUNXI_USB_PMU_IRQ_ENABLE	0x800
-#ifdef CONFIG_MACH_SUN8I_A33
+#if defined(CONFIG_MACH_SUN8I_A33) || defined(CONFIG_MACH_SUN8I_A83T)
 #define SUNXI_USB_CSR			0x410
 #else
 #define SUNXI_USB_CSR			0x404
