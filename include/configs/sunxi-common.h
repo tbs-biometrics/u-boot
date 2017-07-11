@@ -333,7 +333,7 @@ extern int soft_i2c_gpio_scl;
 #define CONFIG_FASTBOOT_FLASH
 
 #ifdef CONFIG_MMC
-#define CONFIG_FASTBOOT_FLASH_MMC_DEV	0
+#define CONFIG_FASTBOOT_FLASH_MMC_DEV	1
 #endif
 #endif
 
