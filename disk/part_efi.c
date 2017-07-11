@@ -418,10 +418,6 @@ int gpt_fill_pte(gpt_header *gpt_h, gpt_entry *gpt_e,
 	for (i = 0; i < parts; i++) {
 		/* partition starting lba */
 		start = partitions[i].start;
-		if (start && (start < offset)) {
-			printf("Partition overlap\n");
-			return -1;
-		}
 		if (start) {
 			gpt_e[i].starting_lba = cpu_to_le64(start);
 			offset = start + partitions[i].size;
