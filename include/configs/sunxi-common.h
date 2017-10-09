@@ -435,6 +435,21 @@ extern int soft_i2c_gpio_scl;
 #define BOOTCMD_SUNXI_COMPAT
 #endif
 
+#define CONFIG_BOOTCOMMAND \
+	"run set_mmc_root; run setargs_mmc; " \
+	"ext4load mmc ${mmc_bootdev}:1 ${kernel_addr_r} /boot/zImage; " \
+	"ext4load mmc ${mmc_bootdev}:1 ${fdt_addr_r} /boot/${fdtfile}; " \
+	"bootz ${kernel_addr_r} - ${fdt_addr_r}"
+
+#define TBS_ENV_SETTINGS \
+	"mmc_root=/dev/mmcblk2p1 ro\0" \
+	"set_mmc_root=if test ${mmc_bootdev} -eq 0; then " \
+		"setenv mmc_root '/dev/mmcblk0p1 ro'; " \
+		"else setenv mmc_root '/dev/mmcblk2p1 ro'; " \
+		"fi\0" \
+	"loglevel=6\0" \
+	"setargs_mmc=setenv bootargs console=${console} root=${mmc_root} rootfstype=ext4 loglevel=${loglevel} rootwait\0"
+
 #include <config_distro_bootcmd.h>
 
 #ifdef CONFIG_USB_KEYBOARD
@@ -510,6 +525,7 @@ extern int soft_i2c_gpio_scl;
 	"uuid_gpt_esp=" UUID_GPT_ESP "\0" \
 	"uuid_gpt_system=" UUID_GPT_SYSTEM "\0" \
 	"partitions=" PARTS_DEFAULT "\0" \
+	TBS_ENV_SETTINGS \
 	BOOTCMD_SUNXI_COMPAT \
 	BOOTENV
 
