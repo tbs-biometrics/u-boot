@@ -450,8 +450,6 @@ extern int soft_i2c_gpio_scl;
 	"loglevel=6\0" \
 	"setargs_mmc=setenv bootargs console=${console} root=${mmc_root} rootfstype=ext4 loglevel=${loglevel} rootwait vt.global_cursor_default=0\0"
 
-#include <config_distro_bootcmd.h>
-
 #ifdef CONFIG_USB_KEYBOARD
 #define CONSOLE_STDIN_SETTINGS \
 	"preboot=usb start\0" \
@@ -526,8 +524,7 @@ extern int soft_i2c_gpio_scl;
 	"uuid_gpt_system=" UUID_GPT_SYSTEM "\0" \
 	"partitions=" PARTS_DEFAULT "\0" \
 	TBS_ENV_SETTINGS \
-	BOOTCMD_SUNXI_COMPAT \
-	BOOTENV
+	BOOTCMD_SUNXI_COMPAT
 
 #else /* ifndef CONFIG_SPL_BUILD */
 #define CONFIG_EXTRA_ENV_SETTINGS
