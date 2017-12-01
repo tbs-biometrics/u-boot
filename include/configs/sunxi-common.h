@@ -448,7 +448,7 @@ extern int soft_i2c_gpio_scl;
 		"else setenv mmc_root '/dev/mmcblk2p1 ro'; " \
 		"fi\0" \
 	"loglevel=6\0" \
-	"setargs_mmc=setenv bootargs console=${console} root=${mmc_root} rootfstype=ext4 loglevel=${loglevel} rootwait\0"
+	"setargs_mmc=setenv bootargs console=${console} root=${mmc_root} rootfstype=ext4 loglevel=${loglevel} rootwait vt.global_cursor_default=0\0"
 
 #include <config_distro_bootcmd.h>
 
