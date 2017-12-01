@@ -662,9 +662,12 @@ static void setup_environment(const void *fdt)
 {
 	char serial_string[17] = { 0 };
 	unsigned int sid[4];
+#if defined(CONFIG_NET)
 	uint8_t mac_addr[6];
 	char ethaddr[16];
-	int i, ret;
+	int i;
+#endif
+	int ret;
 
 	ret = sunxi_get_sid(sid);
 	if (ret == 0 && sid[0] != 0) {
@@ -689,6 +692,7 @@ static void setup_environment(const void *fdt)
 		if ((sid[3] & 0xffffff) == 0)
 			sid[3] |= 0x800000;
 
+#if defined(CONFIG_NET)
 		for (i = 0; i < 4; i++) {
 			sprintf(ethaddr, "ethernet%d", i);
 			if (!fdt_get_alias(fdt, ethaddr))
@@ -712,6 +716,7 @@ static void setup_environment(const void *fdt)
 
 			eth_env_set_enetaddr(ethaddr, mac_addr);
 		}
+#endif
 
 		if (!env_get("serial#")) {
 			snprintf(serial_string, sizeof(serial_string),
