@@ -7,7 +7,9 @@
  * blocks, but devices using something other than that remains to be
  * seen.
  */
+#ifdef CONFIG_ENV_OFFSET
 #define UBOOT_MMC_MAX_SIZE	(CONFIG_ENV_OFFSET - (CONFIG_SYS_MMCSD_RAW_MODE_U_BOOT_SECTOR * 512))
+#endif
 
 / {
 	binman {
@@ -17,7 +19,7 @@
 			filename = "spl/sunxi-spl.bin";
 		};
 		u-boot-img {
-#ifdef CONFIG_MMC
+#if defined(CONFIG_ENV_OFFSET) && defined(CONFIG_MMC)
 			size = <UBOOT_MMC_MAX_SIZE>;
 #endif
 			pos = <CONFIG_SPL_PAD_TO>;
