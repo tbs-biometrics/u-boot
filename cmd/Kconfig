@@ -1321,6 +1321,14 @@ endif
 
 menu "Misc commands"
 
+config CMD_BATCH_IDENT
+	bool "Enable batch identification command (TBS specific)"
+	depends on MACH_SUN8I_A83T && AXP818_POWER
+	help
+	  Provide 'batch identification' commands. You will be able to read
+	  current batch or write it (inside SID). You can also write status
+	  of the batch manipulation into AXP register.
+
 config CMD_BMP
 	bool "Enable 'bmp' command"
 	depends on LCD || DM_VIDEO || VIDEO
