@@ -436,6 +436,12 @@ extern int soft_i2c_gpio_scl;
 #endif
 
 #define CONFIG_BOOTCOMMAND \
+	"if ext2load mmc ${mmc_bootdev}:1 ${scriptaddr} /boot/boot.scr; then " \
+		"echo Boot script found, executing; " \
+		"source ${scriptaddr}; " \
+	"else " \
+		"echo No boot script found, continuing; " \
+	"fi; " \
 	"run set_mmc_root; run setargs_mmc; " \
 	"ext4load mmc ${mmc_bootdev}:1 ${kernel_addr_r} /boot/zImage; " \
 	"ext4load mmc ${mmc_bootdev}:1 ${fdt_addr_r} /boot/${fdtfile}; " \
